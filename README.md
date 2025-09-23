@@ -21,121 +21,142 @@ STEP 5: Remove outliers using IQR
 STEP 6: Use zscore of to remove outliers
 
 # Coding and Output
-## Data Cleaning
-1) Read and Display DataFrame
-   
-```python
+```py
 import pandas as pd
-df=pd.read_csv("/content/SAMPLEIDS.csv")
-df
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/eefa705b-590d-4b36-a38d-7ea099202ad7)
-```python
-import pandas as pd
-df=pd.read_csv('/content/SAMPLEIDS.csv')
-print(df.info)
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/ef712919-f67d-4543-83ef-c63a92e71ade)
-```python
-import pandas as pd
-import pandas as pd
-df=pd.read_csv('/content/SAMPLEIDS.csv')
-print(df.head(13))
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/a882940a-bfa4-4ae5-ab90-f0002b75ca23)
-
-```python
-import pandas as pd
-print(df.tail(12))
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/74673a37-9acb-424f-b1cf-12abd324ad4d)
-```python
-import pandas as pd
-print(df.describe)
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/18a79a6c-6055-42cd-94bb-de05cf841daf)
-```python
-df.isnull().sum()
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/98bde86e-2902-45be-9685-f101dbae81e0)
-```python
-df.nunique()
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/5466405b-031e-4555-9844-11404d23c695)
-```python
-df.TOTAL.fillna(mn,inplace=True)
-df
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/dce7bddd-6669-4042-90cb-8f1bf2d054cb)
-```python
-min=df.M4.min()
-min
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/91b68d21-9463-4193-a4f8-41e8cefebc71)
-```python
-df.M4.fillna(min,inplace=True)
-df
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/1de88c1b-2d57-4e29-8b88-bd35827f2967)
-```python
-import pandas as pd
-import seaborn as sns
-age=[1,3,28,27,25,92,30,39,40,50,26,24,29,94]
-af=pd.DataFrame(age)
-af
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/0f1d18d1-2f8b-4b94-9ebf-e0c576300e1d)
-```python
-sns.boxplot(data=af)
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/df1c3578-4602-4b7a-9871-472ba052a15a)
-```python
-sns.scatterplot(data=af)
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/ee447e3c-2f7c-418f-ab6a-f3ede4d46c6b)
-```python
-q1=af.quantile(0.25)
-q2=af.quantile(0.50)
-q3=af.quantile(0.75)
-iqr=q3-q1
-iqr
-low=q1-1.5*iqr
-low
-high=q3+1.5*iqr
-high
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/3a07c32f-78a1-489e-9ece-ac8cdb168133)
-```python
-af=af[((af>=low)&(af<=high))]
-af
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/2ad72d61-0a47-47fe-b673-922655b29bf6)
-```python
-af.dropna()
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/41228ce8-6262-4cac-9d6f-549501bb2978)
-```python
-sns.boxplot(data=af)
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/8e450c1e-a26d-4ece-b236-da68c669a822)
-```python
-sns.scatterplot(data=af)
-```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/9baec287-e78c-4168-b4b2-c5005194aa8a)
-```python
-data=[1,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60,63,66,69,72,75,78,81,84,87,90,93,96,99,102,105]
-df=pd.DataFrame(data)
-df
-```
-
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/b85dc956-d02f-4e9e-8f80-0be022e04b89)
-```python
 import numpy as np
-from scipy import stats
-z=np.abs(stats.zscore(df))
-z
+import seaborn as sns
+data=pd.read_csv("SAMPLEIDS.csv")
+data
 ```
-![image](https://github.com/KothaiKumar/exno1/assets/121215739/79c2692d-4bb4-4c25-b98b-f20288d68c63)
+<img width="1432" height="315" alt="image" src="https://github.com/user-attachments/assets/0ee021cc-e38a-419b-878c-1eb12f49fe5c" />
+
+
+
+```py
+data.head(5)
+```
+<img width="1349" height="814" alt="image" src="https://github.com/user-attachments/assets/f673c7cd-29bf-4064-823a-394d019719ac" />
+
+
+
+```py
+data.tail()
+```
+<img width="1321" height="280" alt="image" src="https://github.com/user-attachments/assets/20c256f5-fde7-45b8-87e2-4eadd04754f7" />
+
+
+
+```py
+data.isnull()
+```
+<img width="1123" height="797" alt="image" src="https://github.com/user-attachments/assets/22ad68d4-b486-4efa-8c12-b1aeb45223a7" />
+
+
+```py
+data.notnull()
+```
+<img width="1247" height="817" alt="image" src="https://github.com/user-attachments/assets/bb0fc28f-7ceb-4e97-898a-2945f377d16c" />
+
+
+```py
+data.isnull().sum()
+```
+<img width="599" height="593" alt="image" src="https://github.com/user-attachments/assets/4ceaeb0a-ee92-4543-9f9a-99ea819ccd2c" />
+
+
+```py
+data.isnull().any()
+```
+<img width="487" height="619" alt="image" src="https://github.com/user-attachments/assets/5f1453c4-c917-43a6-8f5d-fcde88e35278" />
+
+```py
+data.dropna(axis=0)
+```
+<img width="1340" height="574" alt="image" src="https://github.com/user-attachments/assets/6f7be262-145b-4bf6-8f6a-2abec938c2c3" />
+
+
+```py
+data.dropna(axis=1)
+```
+<img width="626" height="798" alt="image" src="https://github.com/user-attachments/assets/0ee3ac2e-6abc-4973-b7c2-58c39b6bb1ff" />
+
+
+
+```py
+data.fillna(0)
+```
+<img width="1360" height="815" alt="image" src="https://github.com/user-attachments/assets/745794a0-9790-4598-8d48-fd2b63c8269a" />
+
+
+
+```py
+data.fillna(method='ffill')
+```
+<img width="1348" height="809" alt="image" src="https://github.com/user-attachments/assets/ab5cba6a-333f-4872-b43e-ed507ef9f209" />
+
+
+```py
+data.fillna(method='bfill')
+```
+<img width="1333" height="809" alt="image" src="https://github.com/user-attachments/assets/c1dc2870-71a1-4b87-8b97-420e9d2000dc" />
+
+
+```py
+data.fillna({"REGNO":23002926,"NAME":"MOHAN"})
+```
+<img width="1367" height="813" alt="image" src="https://github.com/user-attachments/assets/93ccc33c-f808-43ac-9b17-cb0a2e54b974" />
+
+
+```py
+ir=pd.read_csv("iris.csv")
+ir
+```
+<img width="996" height="647" alt="image" src="https://github.com/user-attachments/assets/689c848a-6a67-4e8c-a509-b400ce63246d" />
+
+
+
+```py
+ir.describe()
+```
+<img width="859" height="397" alt="image" src="https://github.com/user-attachments/assets/c6e784cf-d93a-4a5d-a097-e1276041a8a5" />
+
+
+
+```py
+sns.boxplot(x="sepal_width",data=ir)
+```
+<img width="986" height="744" alt="image" src="https://github.com/user-attachments/assets/ea81a6c2-452f-477f-af26-47baa02d3d0a" />
+
+```
+q1=ir.sepal_width.quantile(0.25)
+q3=ir.sepal_width.quantile(0.75)
+iqr=q3-q1
+print(iqr)
+```
+<img width="497" height="55" alt="image" src="https://github.com/user-attachments/assets/38f06d43-ce59-4376-9c5c-fe2212da831b" />
+
+
+
+```py
+rid=ir[((ir.sepal_width<(q1-1.5*iqr))|(ir.sepal_width>(q3+1.5*iqr)))]
+rid['sepal_width']
+```
+<img width="365" height="277" alt="image" src="https://github.com/user-attachments/assets/fc9a674f-bc1e-40a6-b829-3b298f37f897" />
+
+
+
+```py
+delid=ir[~((ir.sepal_width<(q1-1.5*iqr))|(ir.sepal_width>(q3+1.5*iqr)))]
+delid
+```
+<img width="962" height="583" alt="image" src="https://github.com/user-attachments/assets/25879e96-7bf5-4b15-ba92-f3bbc77a6d1d" />
+
+
+```py
+sns.boxplot(x='sepal_width',data=delid)
+```
+<img width="900" height="749" alt="image" src="https://github.com/user-attachments/assets/4496a9eb-beba-4989-bb6b-655a85c4ff8b" />
+
 
 # Result
-Thus, the program for data cleaning using python has executed successfully.
+Thus we have cleaned the data and removed the outliers by detection using IQR and Z-score method.
